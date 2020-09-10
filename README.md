@@ -36,3 +36,8 @@ The game is basic hangman. The game will automatically chose a word for you. Gue
 - if there is no match, the letters stay hidden and a stike is added to you.
 - when a strike is made, a body part is loaded onto the post picture
 - player guesses until either the total word is guessed before the maximum amount of strikes **or** the maximum stike limit is reached and they lose.
+
+## Post MVP
+- add music, posibbly counting down sounds on harder levels
+- one life mode
+- add a timer
