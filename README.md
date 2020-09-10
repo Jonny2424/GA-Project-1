@@ -29,9 +29,8 @@ The game is basic hangman. The game will automatically chose a word for you. Gue
 ## MVP
 
 - page loads with a word already chosen
-- selected word is in an array
 - waits for user to type a letter
-- checks user input to a value in the array
+- checks user input to the letters in the selected word
 - if there is a match, the letter is shown
 - if there is no match, the letters stay hidden and a stike is added to you.
 - when a strike is made, a body part is loaded onto the post picture
