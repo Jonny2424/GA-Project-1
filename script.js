@@ -33,6 +33,7 @@ document.addEventListener('keypress', function() {
             indexes.push(i);
             for (j = indexes[i]; j <= indexes.length; j++) { 
             console.log(randomWordArray[j]); 
+            
             }
             
             
