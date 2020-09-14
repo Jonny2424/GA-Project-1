@@ -1,13 +1,40 @@
+const wordList = [
+    { word:'halo', hint:  'spartan 118'},
+    { word:'mario', hint:  'theres a million games named after me'},
+    { word:'tetris', hint:  'blocks on blocks on blocks'},
+    { word:'fortnite', hint: 'build and shoot'},
+    { word:'minecraft', hint:  'everything you build is blocky'},
+    { word:'sims', hint:  'controling their lives'},
+    { word:'portal', hint:  'infinite loops'},
+    { word:'battlefield', hint:  'cod wannabe with 64 players'},
+    { word:'zelda', hint:  'triforce'},
+    { word:'pokemon', hint:  'gotta catch them all'}
+]
+let listOfWords = [];
+let listOfHints = [];
+
+for (i=0; i<wordList.length; i++) {
+    let x = wordList[i].word;
+    let y = wordList[i].hint;
+    listOfWords.push(x);
+    listOfHints.push(y);
+}
+
 // Words array is made from words list
 function chooseRandomWord() {
-    const wordList = ['purple', 'fan', 'family', 'twelve', 'silver', 'javascript', 'thirty', 'donate', 'dog', 'future'];
+    let indexOfWord = Math.floor(Math.random() * wordList.length);
     // a string is chosen randomly from words array
-    let randomWord = wordList[Math.floor(Math.random() * wordList.length)]
+    let randomWord = listOfWords[indexOfWord];
     return randomWord;
 };
 
 // Assigning the word to output of the function
 let randomWordOutput = chooseRandomWord();
+
+let indexOfWordForHint = listOfWords.indexOf(randomWordOutput);
+console.log(indexOfWordForHint);
+console.log('adfzvdzfgzdfgbzdfbztehbaezrhazt');
+
 // Initial strike count
 let strike = 0;
 // Empty array used for capturing guesses
@@ -39,6 +66,7 @@ const usedLetters = document.querySelector('.letters-guessed');
 const strikeCount = document.querySelector('.strike-count');
 const gamesWon = document.querySelector('.score');
 const hangmanImages = document.querySelector('img');
+const hint = document.querySelector('h3');
 // Setting the innertext of different divs in the HTML
 randomWordBox.innerText = answerArray.join(' ');
 // strikesAllowed.innerText = `Strikes allowed: ${randomWordOutput.length}`;
@@ -61,9 +89,9 @@ function checkGuessRight(element) {
 // Checks for wrong guesses
 function checkGuessWrong(element) {
     // if the letter has already been guessed, do nothing
-    if (lettersUsed.includes(event.key) === true) {
+    if (lettersUsed.includes(element) === true) {
         // if the letter has NOT been tried and the word does not include that letter, a strike is added
-    } else if (randomWordOutput.includes(event.key) === false) {
+    } else if (randomWordOutput.includes(element) === false) {
         strike++
         // Updates strike count on screen
         strikeCount.innerText = `Strike Count: ${strike}`;
@@ -85,6 +113,7 @@ function pictureSet() {
             break;
         case strike = 4:
             hangmanImages.src = 'images/Hangman Pics/pixil-frame-0 (4).png';
+            hint.innerText = `Hint: ${listOfHints[indexOfWordForHint]}`
             break;
         case strike = 5:
             hangmanImages.src = 'images/Hangman Pics/pixil-frame-0 (5).png';
@@ -111,12 +140,12 @@ function checkforEnd() {
                 strike = 0;
                 lettersUsed = [];
                 randomWordBox.innerText = answerArray.join(' ');
-                // strikesAllowed.innerText = `Strikes allowed: ${randomWordOutput.length}`;
-                strikeCount.innerText = `Strike Count: ${strike}`
+                strikeCount.innerText = `Strike Count: ${strike}`;
                 usedLetters.innerText = `Guessed Letters: ${lettersUsed}`;
                 score = score + 1;
                 gamesWon.innerText = `Games Won: ${score}`;
                 hangmanImages.src = 'images/Hangman Pics/pixil-frame-0 (0).png';
+                hint.innerText = "";
             } else {
                 location.reload();
             }
@@ -134,10 +163,10 @@ function checkforEnd() {
                 strike = 0;
                 lettersUsed = [];
                 randomWordBox.innerText = answerArray.join(' ');
-                // strikesAllowed.innerText = `Strikes allowed: ${randomWordOutput.length}`;
                 strikeCount.innerText = `Strike Count: ${strike}`
                 usedLetters.innerText = `Guessed Letters: ${lettersUsed}`;
                 hangmanImages.src = 'images/Hangman Pics/pixil-frame-0 (0).png';
+                hint.innerText = "";
 
             } else {
                 location.reload();
@@ -147,7 +176,8 @@ function checkforEnd() {
 }
 // Function waiting for key to be pressed
 wholeBody.addEventListener('keypress', function () {
-    let guess = event.key;
+    let guessKey = event.key;
+    let guess = guessKey.toLowerCase();
     // console.log(lettersUsed)
     // Checks if the guess is in the word
     checkGuessRight(guess);
