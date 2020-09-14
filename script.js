@@ -72,7 +72,8 @@ function checkforEnd() {
     // If the answer array is equal to the word, then the player wins
     if (randomWordOutput === answerArray.join('')) {
         setTimeout(function () {
-            if (confirm('You Won! Click "Ok" to play again')) {
+            if (confirm('You Won! Click "Ok" to play again or "Cancel" to refresh page')) {
+                // Resets all values and adds 1 to the score
                 randomWordOutput = chooseRandomWord();
                 answerArray = [];
                 createAnswerArray();
@@ -86,12 +87,15 @@ function checkforEnd() {
                 usedLetters.innerText = `Guessed Letters: ${lettersUsed}`;
                 score = score + 1;
                 gamesWon.innerText = `Games Won: ${score}`;
+            } else {
+                location.reload();
             }
         }, 400);
         // If the player hits the strike limit, they lose
     } else if (strike >= randomWordOutput.length) {
         setTimeout(function () {
-            if (confirm('You Lost! Click "Ok" to play again')) {
+            if (confirm('You Lost! Click "Ok" to play again or "Cancel" to refresh page')) {
+                // All values are rest
                 randomWordOutput = chooseRandomWord();
                 answerArray = [];
                 createAnswerArray();
@@ -104,6 +108,8 @@ function checkforEnd() {
                 strikeCount.innerText = `Strike Count: ${strike}`
                 usedLetters.innerText = `Guessed Letters: ${lettersUsed}`;
 
+            } else {
+                location.reload();
             }
         }, 400);
     }
