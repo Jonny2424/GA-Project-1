@@ -6,34 +6,40 @@ let randomWord = wordList[Math.floor(Math.random() * wordList.length)]
 console.log(randomWord);
 // Array for knowing how many letters are left
 let lettersLeft = randomWord.length;
+// Initial strike count
 let strike = 0
+// Empty array used for capturing guesses
 let lettersUsed = [];
 
-// this array is made to hide the chosen word with underscores
+// Answer array is made with underscores. The length is dependent on the chose word.
+// The array is initially shown to the player on loading the page. It shows how many
+// letters the word. "fan" becomes "_ _ _"
 let answerArray = [];
 for (i = 0; i < randomWord.length; i++) {
     answerArray[i] = "_";
 }
 
 
-// Jquery Variables
+// Jquery Variables from HTML
 const randomWordBox = document.querySelector('.hidden-word-array');
 const wholeBody = document.querySelector('body');
 const strikesAllowed = document.querySelector('.strikes-allowed');
 const usedLetters = document.querySelector('.letters-guessed');
 const strikeCount = document.querySelector('.strike-count');
-// 
+// Setting the innertext of different divs in the HTML
 randomWordBox.innerText = answerArray.join(' ');
 strikesAllowed.innerText = `Strikes allowed: ${randomWord.length}`;
 strikeCount.innerText = `Strike Count: ${strike}`
 usedLetters.innerText = `Guessed Letters: ${lettersUsed}`;
+
 // Checks for correct guesses
 function checkGuessRight(element) {
     for (i = 0; i < randomWord.length; i++) {
-        // Runs through each index of the chosen word. If an index element matches the guess
+        // Runs through each index of the chosen word. If an index element matches the guess, 
+        // set the same index in answerArray to the guess
         if (randomWord[i] === element) {
             answerArray[i] = element;
-            lettersLeft--;
+            // Updates the page to show the correct guesses
             randomWordBox.innerText = answerArray.join(' ');
         }
     }
