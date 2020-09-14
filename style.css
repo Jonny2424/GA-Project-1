@@ -43,6 +43,12 @@ header {
     text-align: center;
 }
 
+footer {
+display: flex;
+align-self: flex-end;
+margin-right: 20px;
+}
+
 h3 {
     margin-top: 10px;
 }
