@@ -39,10 +39,12 @@ function checkGuessRight(element) {
 }
 
 function checkGuessWrong(element) {
-    if (randomWord.includes(event.key) === false) {
-        strike++
-        strikeCount.innerText = `Strike Count: ${strike}`;
-    }
+    if (lettersUsed.includes(event.key) === true) {
+        // console.log("already used");
+    } else if (randomWord.includes(event.key) === false) {
+    strike++
+    strikeCount.innerText = `Strike Count: ${strike}`;
+}
 }
 
 function checkforEnd() {
@@ -64,9 +66,11 @@ function checkforEnd() {
 
 wholeBody.addEventListener('keypress', function () {
     let guess = event.key;
-    lettersUsed.push(guess);
+    
+    console.log(lettersUsed)
     checkGuessRight(guess);
     checkGuessWrong(guess);
+    lettersUsed.push(guess);
     checkforEnd();
 
 
