@@ -86,14 +86,24 @@ function checkforEnd() {
                 usedLetters.innerText = `Guessed Letters: ${lettersUsed}`;
                 score = score + 1;
                 gamesWon.innerText = `Games Won: ${score}`;
-
             }
         }, 400);
         // If the player hits the strike limit, they lose
     } else if (strike >= randomWordOutput.length) {
         setTimeout(function () {
             if (confirm('You Lost! Click "Ok" to play again')) {
-                location.reload();
+                randomWordOutput = chooseRandomWord();
+                answerArray = [];
+                createAnswerArray();
+                console.log(answerArray);
+                console.log(randomWordOutput);
+                strike = 0;
+                lettersUsed = [];
+                randomWordBox.innerText = answerArray.join(' ');
+                strikesAllowed.innerText = `Strikes allowed: ${randomWordOutput.length}`;
+                strikeCount.innerText = `Strike Count: ${strike}`
+                usedLetters.innerText = `Guessed Letters: ${lettersUsed}`;
+
             }
         }, 400);
     }
