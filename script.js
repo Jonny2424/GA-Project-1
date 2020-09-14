@@ -84,7 +84,9 @@ function checkforEnd() {
                 strikesAllowed.innerText = `Strikes allowed: ${randomWordOutput.length}`;
                 strikeCount.innerText = `Strike Count: ${strike}`
                 usedLetters.innerText = `Guessed Letters: ${lettersUsed}`;
-                score++;
+                score = score + 1;
+                gamesWon.innerText = `Games Won: ${score}`;
+
             }
         }, 400);
         // If the player hits the strike limit, they lose
@@ -93,7 +95,7 @@ function checkforEnd() {
             if (confirm('You Lost! Click "Ok" to play again')) {
                 location.reload();
             }
-        }, 300);
+        }, 400);
     }
 }
 // Function waiting for key to be pressed
@@ -112,8 +114,5 @@ wholeBody.addEventListener('keypress', function () {
     }
     // Checks for endgame logic
     checkforEnd();
-    gamesWon.innerText = `Games Won: ${score}`;
-
-
 })
 
