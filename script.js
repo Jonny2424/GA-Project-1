@@ -21,10 +21,12 @@ const randomWordBox = document.querySelector('.hidden-word-array');
 const wholeBody = document.querySelector('body');
 const strikesAllowed = document.querySelector('.strikes-allowed');
 const usedLetters = document.querySelector('.letters-guessed');
-const strikeCount = document.querySelector('.stike-count');
+const strikeCount = document.querySelector('.strike-count');
 // 
 randomWordBox.innerText = answerArray.join(' ');
 strikesAllowed.innerText = `Strikes allowed: ${randomWord.length}`;
+strikeCount.innerText = `Strike Count: ${strike}`
+usedLetters.innerText = `Guessed Letters: ${lettersUsed}`;
 
 function checkGuessRight(element) {
     for (i = 0; i < randomWord.length; i++) {
@@ -39,22 +41,31 @@ function checkGuessRight(element) {
 function checkGuessWrong(element) {
     if (randomWord.includes(event.key) === false) {
         strike++
+        strikeCount.innerText = `Strike Count: ${strike}`;
     }
 }
 
 function checkforEnd() {
     if (lettersLeft <= 0) {
-        console.log('you won')
+        setTimeout(function () {
+            if (confirm('You Won! Click "Ok" to play again')) {
+                location.reload();
+            }
+        }, 300);
+
     } else if (strike >= randomWord.length) {
-        console.log(strike);
-        console.log('you lost')
+        setTimeout(function () {
+            if (confirm('You Lost! Click "Ok" to play again')) {
+                location.reload();
+            }
+        }, 300);
     }
 }
 
 wholeBody.addEventListener('keypress', function () {
     let guess = event.key;
     lettersUsed.push(guess);
-    usedLetters.innerText = `Guessed Letters: ${lettersUsed}`;
+    // usedLetters.innerText = `Guessed Letters: ${lettersUsed}`;
     checkGuessRight(guess);
     checkGuessWrong(guess);
     checkforEnd();
