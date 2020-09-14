@@ -1,19 +1,19 @@
 const wordList = [
-    { word:'halo', hint:  'spartan 118'},
-    { word:'mario', hint:  'theres a million games named after me'},
-    { word:'tetris', hint:  'blocks on blocks on blocks'},
-    { word:'fortnite', hint: 'build and shoot'},
-    { word:'minecraft', hint:  'everything you build is blocky'},
-    { word:'sims', hint:  'controling their lives'},
-    { word:'portal', hint:  'infinite loops'},
-    { word:'battlefield', hint:  'cod wannabe with 64 players'},
-    { word:'zelda', hint:  'triforce'},
-    { word:'pokemon', hint:  'gotta catch them all'}
+    { word: 'halo', hint: 'spartan 118' },
+    { word: 'mario', hint: 'theres a million games named after me' },
+    { word: 'tetris', hint: 'blocks on blocks on blocks' },
+    { word: 'fortnite', hint: 'build and shoot' },
+    { word: 'minecraft', hint: 'everything you build is blocky' },
+    { word: 'sims', hint: 'controling their lives' },
+    { word: 'portal', hint: 'infinite loops' },
+    { word: 'battlefield', hint: 'cod wannabe with 64 players' },
+    { word: 'zelda', hint: 'triforce' },
+    { word: 'pokemon', hint: 'gotta catch them all' }
 ]
 let listOfWords = [];
 let listOfHints = [];
 
-for (i=0; i<wordList.length; i++) {
+for (i = 0; i < wordList.length; i++) {
     let x = wordList[i].word;
     let y = wordList[i].hint;
     listOfWords.push(x);
@@ -125,29 +125,32 @@ function pictureSet() {
     }
 }
 
+// Added a function for reseting the board when the "ok" button is clicked
+function resetBoard() {
+    randomWordOutput = chooseRandomWord();
+    indexOfWordForHint = listOfWords.indexOf(randomWordOutput);
+    answerArray = [];
+    createAnswerArray();
+    console.log(answerArray);
+    console.log(randomWordOutput);
+    strike = 0;
+    lettersUsed = [];
+    randomWordBox.innerText = answerArray.join(' ');
+    strikeCount.innerText = `Strike Count: ${strike}`;
+    usedLetters.innerText = `Guessed Letters: ${lettersUsed}`;
+    hangmanImages.src = 'images/Hangman Pics/pixil-frame-0 (0).png';
+    hint.innerText = 'Hit any key to begin!';
+    hint.style.color = 'white';
+}
 // End game logic
 function checkforEnd() {
     // If the answer array is equal to the word, then the player wins
     if (randomWordOutput === answerArray.join('')) {
         setTimeout(function () {
             if (confirm('You Won! Click "Ok" to play again or "Cancel" to refresh page')) {
-                // Resets all values and adds 1 to the score
-                randomWordOutput = chooseRandomWord();
-                indexOfWordForHint = listOfWords.indexOf(randomWordOutput);
-                answerArray = [];
-                createAnswerArray();
-                console.log(answerArray);
-                console.log(randomWordOutput);
-                strike = 0;
-                lettersUsed = [];
-                randomWordBox.innerText = answerArray.join(' ');
-                strikeCount.innerText = `Strike Count: ${strike}`;
-                usedLetters.innerText = `Guessed Letters: ${lettersUsed}`;
+                resetBoard();
                 score = score + 1;
                 gamesWon.innerText = `Games Won: ${score}`;
-                hangmanImages.src = 'images/Hangman Pics/pixil-frame-0 (0).png';
-                hint.innerText = 'Hit any key to begin!';
-                hint.style.color = 'white';
             } else {
                 location.reload();
             }
@@ -156,22 +159,7 @@ function checkforEnd() {
     } else if (strike >= 6) {
         setTimeout(function () {
             if (confirm('You Lost! Click "Ok" to play again or "Cancel" to refresh page')) {
-                // All values are rest
-                randomWordOutput = chooseRandomWord();
-                indexOfWordForHint = listOfWords.indexOf(randomWordOutput);
-                answerArray = [];
-                createAnswerArray();
-                console.log(answerArray);
-                console.log(randomWordOutput);
-                strike = 0;
-                lettersUsed = [];
-                randomWordBox.innerText = answerArray.join(' ');
-                strikeCount.innerText = `Strike Count: ${strike}`
-                usedLetters.innerText = `Guessed Letters: ${lettersUsed}`;
-                hangmanImages.src = 'images/Hangman Pics/pixil-frame-0 (0).png';
-                hint.innerText = 'Hit any key to begin!';
-                hint.style.color = 'white';
-
+                resetBoard();
             } else {
                 location.reload();
             }
