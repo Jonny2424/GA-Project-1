@@ -1,11 +1,13 @@
 // Words array is made from words list
-const wordList = ['purple', 'fan', 'family', 'twelve', 'silver', 'javascript', 'thirty', 'donate', 'dog', 'future'];
+function chooseRandomWord() {
+    const wordList = ['purple', 'fan', 'family', 'twelve', 'silver', 'javascript', 'thirty', 'donate', 'dog', 'future'];
+    // a string is chosen randomly from words array
+    let randomWord = wordList[Math.floor(Math.random() * wordList.length)]
+    return randomWord;
+};
 
-// a string is chosen randomly from words array
-let randomWord = wordList[Math.floor(Math.random() * wordList.length)]
-console.log(randomWord);
-// Array for knowing how many letters are left
-let lettersLeft = randomWord.length;
+// Assigning the word to output of the function
+let randomWordOutput = chooseRandomWord();
 // Initial strike count
 let strike = 0
 // Empty array used for capturing guesses
@@ -15,9 +17,16 @@ let lettersUsed = [];
 // The array is initially shown to the player on loading the page. It shows how many
 // letters the word. "fan" becomes "_ _ _"
 let answerArray = [];
-for (i = 0; i < randomWord.length; i++) {
-    answerArray[i] = "_";
+function createAnswerArray() {
+
+    for (i = 0; i < randomWordOutput.length; i++) {
+        answerArray[i] = "_";
+    }
+    return answerArray;
 }
+
+console.log(createAnswerArray());
+console.log(randomWordOutput);
 
 
 // Jquery Variables from HTML
@@ -28,16 +37,16 @@ const usedLetters = document.querySelector('.letters-guessed');
 const strikeCount = document.querySelector('.strike-count');
 // Setting the innertext of different divs in the HTML
 randomWordBox.innerText = answerArray.join(' ');
-strikesAllowed.innerText = `Strikes allowed: ${randomWord.length}`;
+strikesAllowed.innerText = `Strikes allowed: ${randomWordOutput.length}`;
 strikeCount.innerText = `Strike Count: ${strike}`
 usedLetters.innerText = `Guessed Letters: ${lettersUsed}`;
 
 // Checks for correct guesses
 function checkGuessRight(element) {
-    for (i = 0; i < randomWord.length; i++) {
+    for (i = 0; i < randomWordOutput.length; i++) {
         // Runs through each index of the chosen word. If an index element matches the guess, 
         // set the same index in answerArray to the guess
-        if (randomWord[i] === element) {
+        if (randomWordOutput[i] === element) {
             answerArray[i] = element;
             // Updates the page to show the correct guesses
             randomWordBox.innerText = answerArray.join(' ');
@@ -48,8 +57,8 @@ function checkGuessRight(element) {
 function checkGuessWrong(element) {
     // if the letter has already been guessed, do nothing
     if (lettersUsed.includes(event.key) === true) {
-    // if the letter has NOT been tried and the word does not include that letter, a strike is added
-    } else if (randomWord.includes(event.key) === false) {
+        // if the letter has NOT been tried and the word does not include that letter, a strike is added
+    } else if (randomWordOutput.includes(event.key) === false) {
         strike++
         // Updates strike count on screen
         strikeCount.innerText = `Strike Count: ${strike}`;
@@ -58,14 +67,21 @@ function checkGuessWrong(element) {
 // End game logic
 function checkforEnd() {
     // If the answer array is equal to the word, then the player wins
-    if (randomWord === answerArray.join('')) {
+    if (randomWordOutput === answerArray.join('')) {
         setTimeout(function () {
             if (confirm('You Won! Click "Ok" to play again')) {
-                location.reload();
+                randomWordOutput = chooseRandomWord();
+                createAnswerArray();
+                strike = 0;
+                lettersUsed = [];
+                randomWordBox.innerText = answerArray.join(' ');
+                strikesAllowed.innerText = `Strikes allowed: ${randomWordOutput.length}`;
+                strikeCount.innerText = `Strike Count: ${strike}`
+                usedLetters.innerText = `Guessed Letters: ${lettersUsed}`;
             }
         }, 300);
         // If the player hits the strike limit, they lose
-    } else if (strike >= randomWord.length) {
+    } else if (strike >= randomWordOutput.length) {
         setTimeout(function () {
             if (confirm('You Lost! Click "Ok" to play again')) {
                 location.reload();
