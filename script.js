@@ -103,12 +103,14 @@ function pictureSet() {
 
         case strike = 1:
             hangmanImages.src = 'images/Hangman Pics/pixil-frame-0 (1).png';
+            hint.innerText = "You're not that lucky!";
             break;
         case strike = 2:
             hangmanImages.src = 'images/Hangman Pics/pixil-frame-0 (2).png';
             break;
         case strike = 3:
             hangmanImages.src = 'images/Hangman Pics/pixil-frame-0 (3).png';
+            hint.innerText = "Ya did it again...";
             break;
         case strike = 4:
             hangmanImages.src = 'images/Hangman Pics/pixil-frame-0 (4).png';
