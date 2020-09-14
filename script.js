@@ -27,9 +27,10 @@ randomWordBox.innerText = answerArray.join(' ');
 strikesAllowed.innerText = `Strikes allowed: ${randomWord.length}`;
 strikeCount.innerText = `Strike Count: ${strike}`
 usedLetters.innerText = `Guessed Letters: ${lettersUsed}`;
-
+// Checks for correct guesses
 function checkGuessRight(element) {
     for (i = 0; i < randomWord.length; i++) {
+        // Runs through each index of the chosen word. If an index element matches the guess
         if (randomWord[i] === element) {
             answerArray[i] = element;
             lettersLeft--;
@@ -37,24 +38,27 @@ function checkGuessRight(element) {
         }
     }
 }
-
+// Checks for wrong guesses
 function checkGuessWrong(element) {
+    // if the letter has already been guessed, do nothing
     if (lettersUsed.includes(event.key) === true) {
-        // console.log("already used");
+    // if the letter has NOT been tried and the word does not include that letter, a strike is added
     } else if (randomWord.includes(event.key) === false) {
-    strike++
-    strikeCount.innerText = `Strike Count: ${strike}`;
+        strike++
+        // Updates strike count on screen
+        strikeCount.innerText = `Strike Count: ${strike}`;
+    }
 }
-}
-
+// End game logic
 function checkforEnd() {
+    // If the answer array is equal to the word, then the player wins
     if (randomWord === answerArray.join('')) {
         setTimeout(function () {
             if (confirm('You Won! Click "Ok" to play again')) {
                 location.reload();
             }
         }, 300);
-
+        // If the player hits the strike limit, they lose
     } else if (strike >= randomWord.length) {
         setTimeout(function () {
             if (confirm('You Lost! Click "Ok" to play again')) {
@@ -63,14 +67,21 @@ function checkforEnd() {
         }, 300);
     }
 }
-
+// Function waiting for key to be pressed
 wholeBody.addEventListener('keypress', function () {
     let guess = event.key;
-    
-    console.log(lettersUsed)
+    // console.log(lettersUsed)
+    // Checks if the guess is in the word
     checkGuessRight(guess);
+    // Checks if guess is not in the word
     checkGuessWrong(guess);
-    lettersUsed.push(guess);
+    // prevents recieving multiple strikes on a single wrong letter
+    if (lettersUsed.includes(guess) === true) {
+    } else {
+        lettersUsed.push(guess);
+        usedLetters.innerText = `Guessed Letters: ${lettersUsed}`;
+    }
+    // Checks for endgame logic
     checkforEnd();
 
 
