@@ -32,8 +32,7 @@ function chooseRandomWord() {
 let randomWordOutput = chooseRandomWord();
 
 let indexOfWordForHint = listOfWords.indexOf(randomWordOutput);
-console.log(indexOfWordForHint);
-console.log('adfzvdzfgzdfgbzdfbztehbaezrhazt');
+
 
 // Initial strike count
 let strike = 0;
@@ -114,6 +113,7 @@ function pictureSet() {
         case strike = 4:
             hangmanImages.src = 'images/Hangman Pics/pixil-frame-0 (4).png';
             hint.innerText = `Hint: ${listOfHints[indexOfWordForHint]}`
+            hint.style.color = 'blue';
             break;
         case strike = 5:
             hangmanImages.src = 'images/Hangman Pics/pixil-frame-0 (5).png';
@@ -133,6 +133,7 @@ function checkforEnd() {
             if (confirm('You Won! Click "Ok" to play again or "Cancel" to refresh page')) {
                 // Resets all values and adds 1 to the score
                 randomWordOutput = chooseRandomWord();
+                indexOfWordForHint = listOfWords.indexOf(randomWordOutput);
                 answerArray = [];
                 createAnswerArray();
                 console.log(answerArray);
@@ -145,7 +146,8 @@ function checkforEnd() {
                 score = score + 1;
                 gamesWon.innerText = `Games Won: ${score}`;
                 hangmanImages.src = 'images/Hangman Pics/pixil-frame-0 (0).png';
-                hint.innerText = "";
+                hint.innerText = 'Hit any key to begin!';
+                hint.style.color = 'white';
             } else {
                 location.reload();
             }
@@ -156,6 +158,7 @@ function checkforEnd() {
             if (confirm('You Lost! Click "Ok" to play again or "Cancel" to refresh page')) {
                 // All values are rest
                 randomWordOutput = chooseRandomWord();
+                indexOfWordForHint = listOfWords.indexOf(randomWordOutput);
                 answerArray = [];
                 createAnswerArray();
                 console.log(answerArray);
@@ -166,7 +169,8 @@ function checkforEnd() {
                 strikeCount.innerText = `Strike Count: ${strike}`
                 usedLetters.innerText = `Guessed Letters: ${lettersUsed}`;
                 hangmanImages.src = 'images/Hangman Pics/pixil-frame-0 (0).png';
-                hint.innerText = "";
+                hint.innerText = 'Hit any key to begin!';
+                hint.style.color = 'white';
 
             } else {
                 location.reload();
