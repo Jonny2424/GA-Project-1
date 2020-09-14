@@ -39,8 +39,7 @@ font-size: 25px;
 }
 
 header {
-    margin-top: 100px;
-    margin-bottom: 200px;
+    margin-top: 5px;
     text-align: center;
 }
 
@@ -49,6 +48,16 @@ h3 {
 }
 
 .img-box {
-    display:flex;
-    
+    position: relative;
+    overflow: hidden;
+    width: 400px;
+    height: 400px;
+}
+
+img {
+    position:absolute;
+    width: 650px;
+    height: 650px;
+    left: -150px;
+    top: -130px;
 }
