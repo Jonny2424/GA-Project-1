@@ -67,21 +67,34 @@ function checkGuessWrong(element) {
         strike++
         // Updates strike count on screen
         strikeCount.innerText = `Strike Count: ${strike}`;
+        pictureSet();
     }
 }
+// Function changes hangman picture based on how many strikes
+function pictureSet() {
+    switch (strike) {
 
-// function pictureSet() {
-//     let numOfPics = 6;
-//     let interval = (numOfPics/randomWordOutput.length);
+        case strike = 1:
+            hangmanImages.src = 'images/Hangman Pics/pixil-frame-0 (1).png';
+            break;
+        case strike = 2:
+            hangmanImages.src = 'images/Hangman Pics/pixil-frame-0 (2).png';
+            break;
+        case strike = 3:
+            hangmanImages.src = 'images/Hangman Pics/pixil-frame-0 (3).png';
+            break;
+        case strike = 4:
+            hangmanImages.src = 'images/Hangman Pics/pixil-frame-0 (4).png';
+            break;
+        case strike = 5:
+            hangmanImages.src = 'images/Hangman Pics/pixil-frame-0 (5).png';
+            break;
+        case strike = 6:
+            hangmanImages.src = 'images/Hangman Pics/pixil-frame-0 (6).png';
+            break;
 
-//     if (strike = interval)
-
-
-
-
-
-
-// }
+    }
+}
 
 // End game logic
 function checkforEnd() {
@@ -103,6 +116,7 @@ function checkforEnd() {
                 usedLetters.innerText = `Guessed Letters: ${lettersUsed}`;
                 score = score + 1;
                 gamesWon.innerText = `Games Won: ${score}`;
+                hangmanImages.src = 'images/Hangman Pics/pixil-frame-0 (0).png';
             } else {
                 location.reload();
             }
@@ -123,6 +137,7 @@ function checkforEnd() {
                 // strikesAllowed.innerText = `Strikes allowed: ${randomWordOutput.length}`;
                 strikeCount.innerText = `Strike Count: ${strike}`
                 usedLetters.innerText = `Guessed Letters: ${lettersUsed}`;
+                hangmanImages.src = 'images/Hangman Pics/pixil-frame-0 (0).png';
 
             } else {
                 location.reload();
