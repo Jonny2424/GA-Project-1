@@ -46,7 +46,7 @@ function checkGuessWrong(element) {
 }
 
 function checkforEnd() {
-    if (lettersLeft <= 0) {
+    if (randomWord === answerArray.join('')) {
         setTimeout(function () {
             if (confirm('You Won! Click "Ok" to play again')) {
                 location.reload();
@@ -65,7 +65,6 @@ function checkforEnd() {
 wholeBody.addEventListener('keypress', function () {
     let guess = event.key;
     lettersUsed.push(guess);
-    // usedLetters.innerText = `Guessed Letters: ${lettersUsed}`;
     checkGuessRight(guess);
     checkGuessWrong(guess);
     checkforEnd();
