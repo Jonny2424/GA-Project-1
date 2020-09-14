@@ -9,9 +9,11 @@ function chooseRandomWord() {
 // Assigning the word to output of the function
 let randomWordOutput = chooseRandomWord();
 // Initial strike count
-let strike = 0
+let strike = 0;
 // Empty array used for capturing guesses
 let lettersUsed = [];
+// Wins counter
+let score = 0;
 
 // Answer array is made with underscores. The length is dependent on the chose word.
 // The array is initially shown to the player on loading the page. It shows how many
@@ -35,12 +37,14 @@ const wholeBody = document.querySelector('body');
 const strikesAllowed = document.querySelector('.strikes-allowed');
 const usedLetters = document.querySelector('.letters-guessed');
 const strikeCount = document.querySelector('.strike-count');
+const gamesWon = document.querySelector('.score');
+console.log(gamesWon);
 // Setting the innertext of different divs in the HTML
 randomWordBox.innerText = answerArray.join(' ');
 strikesAllowed.innerText = `Strikes allowed: ${randomWordOutput.length}`;
 strikeCount.innerText = `Strike Count: ${strike}`
 usedLetters.innerText = `Guessed Letters: ${lettersUsed}`;
-
+gamesWon.innerText = `Games Won: ${score}`
 // Checks for correct guesses
 function checkGuessRight(element) {
     for (i = 0; i < randomWordOutput.length; i++) {
@@ -78,6 +82,7 @@ function checkforEnd() {
                 strikesAllowed.innerText = `Strikes allowed: ${randomWordOutput.length}`;
                 strikeCount.innerText = `Strike Count: ${strike}`
                 usedLetters.innerText = `Guessed Letters: ${lettersUsed}`;
+                score++;
             }
         }, 300);
         // If the player hits the strike limit, they lose
