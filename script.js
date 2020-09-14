@@ -3,48 +3,62 @@ const wordList = ['purple', 'fan', 'family', 'twelve', 'silver', 'javascript', '
 
 // a string is chosen randomly from words array
 let randomWord = wordList[Math.floor(Math.random() * wordList.length)]
+console.log(randomWord);
+// Array for knowing how many letters are left
+let lettersLeft = randomWord.length;
+let strike = 0
+let lettersUsed = [];
 
-// the string is then broken down into an array. Each letter is an index.
-randomWordArray = randomWord.split('');
-console.log(randomWordArray);
+// this array is made to hide the chosen word with underscores
+let answerArray = [];
+for (i = 0; i < randomWord.length; i++) {
+    answerArray[i] = "_";
+}
+
 
 // Jquery Variables
 const randomWordBox = document.querySelector('.hidden-word-array');
 const wholeBody = document.querySelector('body');
+const strikesAllowed = document.querySelector('.strikes-allowed');
+const usedLetters = document.querySelector('.letters-guessed');
+const strikeCount = document.querySelector('.stike-count');
+// 
+randomWordBox.innerText = answerArray.join(' ');
+strikesAllowed.innerText = `Strikes allowed: ${randomWord.length}`;
 
-
-// Function for making divs for each letter of the word
-for (i = 0; i < randomWordArray.length; i++) {
-   randomWordBox.innerHTML += `<div class="blank"><span class="hidden-letter">${randomWordArray[i]}</span></div>`;
+function checkGuessRight(element) {
+    for (i = 0; i < randomWord.length; i++) {
+        if (randomWord[i] === element) {
+            answerArray[i] = element;
+            lettersLeft--;
+            randomWordBox.innerText = answerArray.join(' ');
+        }
+    }
 }
 
-function index() {
-console.log(randomWordArray[indexes[i]]);
+function checkGuessWrong(element) {
+    if (randomWord.includes(event.key) === false) {
+        strike++
+    }
 }
 
-// add eventListener for when a key is pressed
-document.addEventListener('keypress', function() {
+function checkforEnd() {
+    if (lettersLeft <= 0) {
+        console.log('you won')
+    } else if (strike >= randomWord.length) {
+        console.log(strike);
+        console.log('you lost')
+    }
+}
 
-// Finding which index has the specific letter    
-    let indexes = [];
-    
-    for ( let i = 0; i < randomWordArray.length; i++)
-        if (randomWordArray[i] === event.key) {
-            indexes.push(i);
-            for (j = indexes[i]; j <= indexes.length; j++) { 
-            console.log(randomWordArray[j]); 
-            
-            }
-            
-            
-        } 
-        
+wholeBody.addEventListener('keypress', function () {
+    let guess = event.key;
+    lettersUsed.push(guess);
+    usedLetters.innerText = `Guessed Letters: ${lettersUsed}`;
+    checkGuessRight(guess);
+    checkGuessWrong(guess);
+    checkforEnd();
+
+
 })
 
-// IF (selceted word contains keyPress)
-//  find which index from the word
-//  reveal the letter of the matching index
-//  add letter to usedLetters array
-// ELSE IF (selceted word does NOT contains keyPress)
-//  tell player its wrong
-//  subtract from numberOfGuessesLeft
