@@ -1,20 +1,21 @@
 body {
     display: flex;
-    justify-items: center;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: aqua;
+    background-color: #212529;
+    color: white;
 }
 
 .parent-wrapper {
-    height: 200px;
-    width: 300px;
+    height: 400px;
+    width: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-items: center;
-    /* border: 4px solid black; */
+    justify-content: center;
     padding: 15px;
+    margin-top: 50px;
 }
 
 .child-wrapper {
@@ -26,19 +27,8 @@ body {
 
 .box {
 /* border: 2px solid black; */
-margin: 8px 0px;
+margin: 12px 0px;
 font-size: 25px;
-}
-
-
-.blank {
-    height: 30px;
-    width: 20px;
-    display: flex;
-    border-bottom: 2px solid black;
-    justify-content: center;
-    align-items: center;
-    margin: 0 5px;
 }
 
 .hidden-word-array {
@@ -48,9 +38,17 @@ font-size: 25px;
     justify-items: space-around;
 }
 
-.hidden-letter {
-    font-size: 0;
+header {
+    margin-top: 100px;
+    margin-bottom: 200px;
+    text-align: center;
 }
-.add-letter {
-    font-size: 25px
+
+h3 {
+    margin-top: 10px;
+}
+
+.img-box {
+    display:flex;
+    
 }
