@@ -38,7 +38,6 @@ const strikesAllowed = document.querySelector('.strikes-allowed');
 const usedLetters = document.querySelector('.letters-guessed');
 const strikeCount = document.querySelector('.strike-count');
 const gamesWon = document.querySelector('.score');
-console.log(gamesWon);
 // Setting the innertext of different divs in the HTML
 randomWordBox.innerText = answerArray.join(' ');
 strikesAllowed.innerText = `Strikes allowed: ${randomWordOutput.length}`;
@@ -75,7 +74,10 @@ function checkforEnd() {
         setTimeout(function () {
             if (confirm('You Won! Click "Ok" to play again')) {
                 randomWordOutput = chooseRandomWord();
+                answerArray = [];
                 createAnswerArray();
+                console.log(answerArray);
+                console.log(randomWordOutput);
                 strike = 0;
                 lettersUsed = [];
                 randomWordBox.innerText = answerArray.join(' ');
@@ -84,7 +86,7 @@ function checkforEnd() {
                 usedLetters.innerText = `Guessed Letters: ${lettersUsed}`;
                 score++;
             }
-        }, 300);
+        }, 400);
         // If the player hits the strike limit, they lose
     } else if (strike >= randomWordOutput.length) {
         setTimeout(function () {
@@ -110,6 +112,7 @@ wholeBody.addEventListener('keypress', function () {
     }
     // Checks for endgame logic
     checkforEnd();
+    gamesWon.innerText = `Games Won: ${score}`;
 
 
 })
