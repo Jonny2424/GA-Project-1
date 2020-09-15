@@ -1,3 +1,4 @@
+// Array containing a word and its hint
 const wordList = [
     { word: 'halo', hint: 'spartan 118' },
     { word: 'mario', hint: 'theres a million games named after me' },
@@ -10,9 +11,11 @@ const wordList = [
     { word: 'zelda', hint: 'triforce' },
     { word: 'pokemon', hint: 'gotta catch them all' }
 ]
+// Empty arrays for splitting words and hints
 let listOfWords = [];
 let listOfHints = [];
-
+// For loop runs through the wordList and breaks aparts words and hints
+// and assigns them to an array
 for (i = 0; i < wordList.length; i++) {
     let x = wordList[i].word;
     let y = wordList[i].hint;
@@ -20,7 +23,7 @@ for (i = 0; i < wordList.length; i++) {
     listOfHints.push(y);
 }
 
-// Words array is made from words list
+// Function for choosing the random word
 function chooseRandomWord() {
     let indexOfWord = Math.floor(Math.random() * wordList.length);
     // a string is chosen randomly from words array
@@ -30,7 +33,7 @@ function chooseRandomWord() {
 
 // Assigning the word to output of the function
 let randomWordOutput = chooseRandomWord();
-
+// Finds index of the word in order to assign the correct hint
 let indexOfWordForHint = listOfWords.indexOf(randomWordOutput);
 
 
@@ -43,7 +46,7 @@ let score = 0;
 
 // Answer array is made with underscores. The length is dependent on the chose word.
 // The array is initially shown to the player on loading the page. It shows how many
-// letters the word. "fan" becomes "_ _ _"
+// letters the word. "fan" becomes "_ _ _".
 let answerArray = [];
 function createAnswerArray() {
 
@@ -53,8 +56,8 @@ function createAnswerArray() {
     return answerArray;
 }
 
-console.log(createAnswerArray());
-console.log(randomWordOutput);
+// console.log(createAnswerArray());
+// console.log(randomWordOutput);
 
 
 // Jquery Variables from HTML
