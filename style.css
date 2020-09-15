@@ -22,13 +22,12 @@ body {
     display: flex;
     flex-direction: column;
     justify-items: left;
-
 }
 
 .box {
-/* border: 2px solid black; */
-margin: 12px 0px;
-font-size: 25px;
+    /* border: 2px solid black; */
+    margin: 12px 0px;
+    font-size: 25px;
 }
 
 .hidden-word-array {
@@ -44,9 +43,46 @@ header {
 }
 
 footer {
-display: flex;
-align-self: flex-end;
-margin-right: 20px;
+    display: flex;
+    align-self: flex-end;
+    margin-right: 20px;
+    -webkit-animation: rainbow 30s infinite;
+}
+
+@keyframes rainbow {
+    0% {
+        color: orange;
+    }
+    10% {
+        color: purple;
+    }
+    20% {
+        color: red;
+    }
+    30% {
+        color: CadetBlue;
+    }
+    40% {
+        color: yellow;
+    }
+    50% {
+        color: coral;
+    }
+    60% {
+        color: green;
+    }
+    70% {
+        color: cyan;
+    }
+    80% {
+        color: DeepPink;
+    }
+    90% {
+        color: DodgerBlue;
+    }
+    100% {
+        color: orange;
+    }
 }
 
 h3 {
@@ -61,7 +97,7 @@ h3 {
 }
 
 img {
-    position:absolute;
+    position: absolute;
     width: 650px;
     height: 650px;
     left: -150px;
