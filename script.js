@@ -117,6 +117,7 @@ function pictureSet() {
             hint.innerText = "Ya did it again...";
             break;
         case strike = 4:
+            // strike 4 is when the hints pop up
             hangmanImages.src = 'images/Hangman Pics/pixil-frame-0 (4).png';
             hint.innerText = `Hint: ${listOfHints[indexOfWordForHint]}`
             hint.style.color = 'blue';
@@ -137,8 +138,6 @@ function resetBoard() {
     indexOfWordForHint = listOfWords.indexOf(randomWordOutput);
     answerArray = [];
     createAnswerArray();
-    console.log(answerArray);
-    console.log(randomWordOutput);
     strike = 0;
     lettersUsed = [];
     randomWordBox.innerText = answerArray.join(' ');
@@ -178,8 +177,8 @@ function checkforEnd() {
 // Function waiting for key to be pressed
 wholeBody.addEventListener('keypress', function () {
     let guessKey = event.key;
+    // Forces all letters to lowercase
     let guess = guessKey.toLowerCase();
-    // console.log(lettersUsed)
     // Checks if the guess is in the word
     checkGuessRight(guess);
     // Checks if guess is not in the word

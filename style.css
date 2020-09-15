@@ -1,3 +1,6 @@
+/* Nes-css does all the 8-bit stuff. I added their work into mine. For me to use
+it, they have prefefined classes that I add into the html*/
+
 body {
     display: flex;
     justify-content: center;
@@ -25,7 +28,6 @@ body {
 }
 
 .box {
-    /* border: 2px solid black; */
     margin: 12px 0px;
     font-size: 25px;
 }
