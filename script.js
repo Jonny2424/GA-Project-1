@@ -55,6 +55,7 @@ function createAnswerArray() {
     }
     return answerArray;
 }
+createAnswerArray();
 
 // console.log(createAnswerArray());
 // console.log(randomWordOutput);
@@ -62,6 +63,7 @@ function createAnswerArray() {
 
 // Jquery Variables from HTML
 const randomWordBox = document.querySelector('.hidden-word-array');
+randomWordBox.innerText = answerArray.join(' ');
 const wholeBody = document.querySelector('body');
 // const strikesAllowed = document.querySelector('.strikes-allowed');
 const usedLetters = document.querySelector('.letters-guessed');
@@ -69,6 +71,8 @@ const strikeCount = document.querySelector('.strike-count');
 const gamesWon = document.querySelector('.score');
 const hangmanImages = document.querySelector('img');
 const hint = document.querySelector('h3');
+const hardModeSwitch = document.querySelector('#hard-mode');
+const mainTitle = document.querySelector('h1');
 // Setting the innertext of different divs in the HTML
 randomWordBox.innerText = answerArray.join(' ');
 // strikesAllowed.innerText = `Strikes allowed: ${randomWordOutput.length}`;
@@ -146,7 +150,10 @@ function resetBoard() {
     hangmanImages.src = 'images/Hangman Pics/pixil-frame-0 (0).png';
     hint.innerText = 'Hit any key to begin!';
     hint.style.color = 'white';
+    mainTitle.innerText = 'Can you guess me?';
+    hint.innerText = 'Hit any key to begin!';
 }
+
 // End game logic
 function checkforEnd() {
     // If the answer array is equal to the word, then the player wins
@@ -188,5 +195,13 @@ wholeBody.addEventListener('keypress', function () {
     }
     // Checks for endgame logic
     checkforEnd();
+})
+// Added hard mode when the player clicks on my name in the corner
+hardModeSwitch.addEventListener('click', function (event) {
+    event.preventDefault();
+    strike = 5;
+    strikeCount.innerText = `Strike Count: ${strike}`
+    mainTitle.innerText = 'HARD MODE!'
+    hint.innerText = 'One strike and you lose';
 })
 

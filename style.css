@@ -42,11 +42,15 @@ header {
     text-align: center;
 }
 
+a {
+    text-decoration: none;
+    -webkit-animation: rainbow 30s infinite;
+}
+
 footer {
     display: flex;
     align-self: flex-end;
     margin-right: 20px;
-    -webkit-animation: rainbow 30s infinite;
 }
 /* Found a cool way to animate a text with css. 30s is the overall time window and it runs over and over.
 the perecents determine when a color change is. Breaks the time window down into percentages. 30s gives
