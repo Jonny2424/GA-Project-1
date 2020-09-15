@@ -57,14 +57,11 @@ function createAnswerArray() {
 }
 createAnswerArray();
 
-// console.log(createAnswerArray());
-// console.log(randomWordOutput);
-
-
 // Jquery Variables from HTML
 const randomWordBox = document.querySelector('.hidden-word-array');
 randomWordBox.innerText = answerArray.join(' ');
 const wholeBody = document.querySelector('body');
+
 // const strikesAllowed = document.querySelector('.strikes-allowed');
 const usedLetters = document.querySelector('.letters-guessed');
 const strikeCount = document.querySelector('.strike-count');
@@ -73,9 +70,9 @@ const hangmanImages = document.querySelector('img');
 const hint = document.querySelector('h3');
 const hardModeSwitch = document.querySelector('#hard-mode');
 const mainTitle = document.querySelector('h1');
+
 // Setting the innertext of different divs in the HTML
 randomWordBox.innerText = answerArray.join(' ');
-// strikesAllowed.innerText = `Strikes allowed: ${randomWordOutput.length}`;
 strikeCount.innerText = `Strike Count: ${strike}`
 usedLetters.innerText = `Guessed Letters: ${lettersUsed}`;
 gamesWon.innerText = `Games Won: ${score}`

@@ -26,6 +26,10 @@ The game is basic hangman. The game will automatically chose a word for you. Gue
 
 ![wireframe](https://i.imgur.com/RhbsDnn.png)
 
+## Flowchart
+
+![flowchat](https://i.imgur.com/40MpvBZ.png)
+
 ## MVP
 
 - page loads with a word already chosen
