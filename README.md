@@ -14,8 +14,7 @@ The game is basic hangman. The game will automatically chose a word for you. Gue
 - if the guess does not match, the user recieves a strike
 
 ## Features
-- user can choose difficulty (length of words, sentances, and numbers)
-
+- displays already guessed letters
 - body parts appear on post when a stike occurs
 - the game keeps track of how many times you win
 
@@ -43,4 +42,4 @@ The game is basic hangman. The game will automatically chose a word for you. Gue
 ## Post MVP
 - add music, posibbly counting down sounds on harder levels
 - one life mode
-- add a timer
+- add hints
